@@ -172,7 +172,7 @@ type TxPoolQuery struct {
 }
 
 // ContentFrom returns the transactions contained within the transaction pool.
-func (s *TxPoolAPI) Query(query TxPoolQuery) ([]*types.Transaction, error) {
+func (s *PublicTxPoolAPI) Query(query TxPoolQuery) ([]*types.Transaction, error) {
 	content := []*types.Transaction{}
 	pending, err := s.b.GetPoolTransactions()
 	for _, tx := range pending {
