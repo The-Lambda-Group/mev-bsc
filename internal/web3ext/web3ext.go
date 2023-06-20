@@ -764,6 +764,11 @@ web3._extend({
 			call: 'txpool_contentFrom',
 			params: 1,
 		}),
+		new web3._extend.Method({
+			name: 'query',
+			call: 'txpool_query',
+			params: 1,
+		}),
 	]
 });
 `

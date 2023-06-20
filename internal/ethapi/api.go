@@ -167,6 +167,22 @@ func NewPublicTxPoolAPI(b Backend) *PublicTxPoolAPI {
 	return &PublicTxPoolAPI{b}
 }
 
+type TxPoolQuery struct {
+	Hash common.Hash `json:"hash"`
+}
+
+// ContentFrom returns the transactions contained within the transaction pool.
+func (s *TxPoolAPI) Query(query TxPoolQuery) ([]*types.Transaction, error) {
+	content := []*types.Transaction{}
+	pending, err := s.b.GetPoolTransactions()
+	for _, tx := range pending {
+		if tx.Hash() == query.Hash {
+			content = append(content, tx)
+		}
+	}
+	return content, err
+}
+
 // Content returns the transactions contained within the transaction pool.
 func (s *PublicTxPoolAPI) Content() map[string]map[string]map[string]*RPCTransaction {
 	content := map[string]map[string]map[string]*RPCTransaction{
