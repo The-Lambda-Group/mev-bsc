@@ -580,6 +580,12 @@ web3._extend({
 			params: 2,
 			inputFormatter: [null, web3._extend.formatters.inputBlockNumberFormatter]
 		}),
+		new web3._extend.Method({
+			name: 'call',
+			call: 'eth_callLogs',
+			params: 2,
+			inputFormatter: [formatters.inputCallFormatter, formatters.inputDefaultBlockNumberFormatter]
+		});
 	],
 	properties: [
 		new web3._extend.Property({
